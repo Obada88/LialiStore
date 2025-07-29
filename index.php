@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <meta name="spaceremit-verification" content="WEWISKKPZIGW5G3D05C0DC8A40RVLLF8MGLVBICEFCT6K0YWVR">
+
+
+
+
+</head>
+
+<script>
+const SP_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; //Your website public key
+const SP_FORM_ID = "#spaceremit-form"; // Identifier for the form
+const SP_SELECT_RADIO_NAME = "sp-pay-type-radio"; // Name attribute of radio buttons
+
+const LOCAL_METHODS_BOX_STATUS = true; // Status of local payment methods box
+const LOCAL_METHODS_PARENT_ID = "#spaceremit-local-methods-pay"; // Identifier for the container of local payment methods
+
+const CARD_BOX_STATUS = true; // Status of card payment box
+const CARD_BOX_PARENT_ID = "#spaceremit-card-pay"; // Identifier for the container of card payment
+let SP_FORM_AUTO_SUBMIT_WHEN_GET_CODE = true; // Flag indicating whether the form should automatically submit when getting a code
+
+// Callback function for successful payment
+function SP_SUCCESSFUL_PAYMENT(spaceremit_code) {}
+// Callback function for failed payment
+function SP_FAILD_PAYMENT() {}
+// Callback function for receiving message
+function SP_RECIVED_MESSAGE(message) {alert(message);}
+// Callback function for needing authentication
+function SP_NEED_AUTH(target_auth_link) {}
+</script>
+
+<body>
+
+
+<?php $amount = 10; // Amount to be paid ?>
+
+    <!-- Start of form -->
+<form id="spaceremit-form" style="width: 400px;padding: 10px;"> 
+    <!-- Hidden input fields for amount and currency -->
+    <input type="hidden" name="amount"  value="<?=$amount ?>">
+    <input type="hidden" name="currency" value="USD">
+    
+    <!-- Hidden input fields for buyer information -->
+    <input type="hidden" name="fullname" value="<FULLNAME OF BUYER>">
+    <input type="hidden" name="email"  value="<EMAIL OF BUYER>">
+    <input type="hidden" name="phone"  value="<PHONE OF BUYER>">
+    <input type="hidden" name="notes"  value="<CUSTOM FEILD YOU WANT TO ADD>">
+    
+    <!-- Container for local payment methods -->
+    <div class="sp-one-type-select">
+        <!-- Local payment methods radio button -->
+        <input type="radio" name="sp-pay-type-radio" value="local-methods-pay" id="sp_local_methods_radio" checked>
+        <label for="sp_local_methods_radio"><div>Local payment methods</div></label>
+        
+        <!-- Container for displaying local payment methods -->
+        <div id="spaceremit-local-methods-pay"></div>
+    </div>
+  
+    <!-- Container for card payment -->
+    <div class="sp-one-type-select">
+        <!-- Card payment radio button -->
+        <input type="radio" name="sp-pay-type-radio" value="card-pay" id="sp_card_radio" >
+        <label for="sp_card_radio"><div>Card payment</div></label>
+        
+        <!-- Container for card payment -->
+        <div id="spaceremit-card-pay"></div>
+    </div>
+   
+    <!-- Button to submit the form -->
+    <div><button type="submit">pay</button></div>
+    
+</form> <!-- End of form -->
+
+<script src="https://spaceremit.com/api/v2/js_script/spaceremit.js" ></script><!-- Script tag to include Spaceremit JavaScript library -->
+
+</body>
+</html>
