@@ -1,0 +1,7 @@
+.git
+.github
+.vscode
+docs
+*.pdf
+README.md
+.gitignore
